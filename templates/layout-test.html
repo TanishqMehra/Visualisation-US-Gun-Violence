@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<head>
+    <title> Website Layout</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="../static/libraries/datamaps.usa.min.js"></script>
+    <link rel="stylesheet" href="../static/css/numberStats.css">
+    <script src="../static/numberAnimation.js"></script>
+    <style>
+        .mygrid {
+            display: grid;
+            height: 97%;
+            grid-template-columns: auto auto auto;
+            /* grid-gap: 1rem; */
+        }
+
+        .mygrid>div {
+            background: #EDE7F6;
+            /* padding: 0.5rem; */
+            /* border-radius: 1rem; */
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            /* margin: 2rem; */
+            font: 12px system-ui;
+            height: 98%;
+        }
+    </style>
+    <script type="text/javascript" src="../static/libraries/globals.js"></script>
+    <script>
+
+        var columns = 4,
+            rows = 4;
+
+        window.addEventListener('load', function () {
+            console.log("windowloaded")
+            // debugger;
+            adjustLayout(columns, rows)
+        })
+        window.addEventListener('resize', function () {
+            console.log("windowresized")
+            adjustLayout(columns, rows)
+        })
+    </script>
+</head>
+
+<body>
+
+    <div class="mygrid">
+        <div colspan=1 rowspan=1 style="align-self:stretch">
+
+
+<!-- 
+            <div class="content">
+                <div class="info-card">
+                    <div class="info">
+                        <h3>Statistics</h3>
+                        <div class="info-item">
+                            <div class="summary">
+                                <span class="title">Number of Gun Violence</span>
+                                <span class="value">2304 MB / 3423 MB</span>
+                            </div>
+                            <div class="slider">
+                                <span id="ds" class="progress"></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="summary">
+                                <span class="title">Instances</span>
+                                <span class="value">12 / 14</span>
+                            </div>
+                            <div class="slider">
+                                <span id="ins" class="progress"></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="summary">
+                                <span class="title">Datebases</span>
+                                <span class="value">8 / 16</span>
+                            </div>
+                            <div class="slider">
+                                <span id="dbs" class="progress"></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="summary">
+                                <span class="title">Mail Accounts</span>
+                                <span class="value">18 / 21</span>
+                            </div>
+                            <div class="slider">
+                                <span id="mail" class="progress"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+ -->
+
+
+        </div>
+        <div colspan=3 rowspan=2>
+            <!-- <div id="div_datamap" style="position: absolute">
+
+            </div> -->
+            <iframe style="height:100%;width:100%" src="datamap.html"></iframe>
+
+
+        </div>
+        <div colspan=1>Ducimus quibusdam inventore delectus doloribus dignissimos. Dignissimos quos officia minus
+            exercitationem
+            perspiciatis harum iusto molestiae deleniti quod sunt amet recusandae autem, neque doloremque ad alias eaque
+            consequuntur nesciunt quis eius!</div>
+        <div>Cumque aspernatur ex ipsum dolorum eius, tempore omnis minus sequi architecto totam sunt maxime nemo, ab
+            repellendus. Aut voluptatem saepe voluptatibus nisi ipsum. Debitis corporis culpa ipsa error nemo doloribus.
+        </div>
+        <div id="datamap">
+            Random
+        </div>
+        <div>Voluptatibus similique modi voluptatum voluptatem quo quod minima ducimus facere, sequi libero accusamus
+            nisi nobis? Minima error tempore quo esse quod odit, deleniti labore nulla ullam velit nemo neque sint!
+        </div>
+        <div>Qui, corporis delectus? Pariatur vel autem commodi, accusantium, voluptate obcaecati iste, a debitis
+            facilis repellendus mollitia. Dolore dicta totam, quaerat omnis accusantium magni alias voluptates eligendi
+            ex id aut dolorem?</div>
+        <div>Recusandae tempora ab error omnis exercitationem illo accusamus esse sit ipsa accusantium iure, possimus
+            ducimus quis consequuntur qui corporis nobis culpa repudiandae! Suscipit, debitis. Omnis delectus at vitae
+            laborum quos?</div>
+        <div>Dolorem saepe accusamus sed placeat porro ex, ab, vel eaque libero incidunt facilis delectus, iure odio
+            dicta error consequuntur perspiciatis quasi? Corrupti incidunt quia asperiores quo magnam at minima
+            laudantium?</div>
+        <div>Dolor ad saepe, nemo fugit tempora autem est fugiat quis porro atque nam repellendus maxime neque
+            voluptatem rerum amet odit aspernatur voluptates iusto eos laboriosam enim vel. Eius, debitis beatae!</div>
+        <script src="../static/datamap.js"> </script>
+    </div>
+    <script>
+
+    </script>
+
+</body>

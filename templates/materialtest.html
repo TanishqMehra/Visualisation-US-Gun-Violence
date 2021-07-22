@@ -1,0 +1,400 @@
+<html>
+
+<head>
+    <title>
+        US Gun Violence
+    </title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+
+    <script src="../static/libraries/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="..\fontawesome-free-5.15.3-web\css\all.min.css">
+
+    <link rel="stylesheet" href="..\static\css\materialtheme.css">
+    <link rel="stylesheet" href="..\static\css\topButtons.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+    <script src="../static/libraries/d3-tip.js"></script>
+
+    <link rel="stylesheet" href="..\static\css\datamap.css">
+    <link rel="stylesheet" href="..\static\css\barWithLine.css">
+
+
+    <!-- Range Slider Requirements -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+    <!-- Moment JS -->
+    <script src="../static/libraries/moment.min.js"></script>
+
+
+    <!-- Globals // For month year list and mapping -->
+    <script src="../static/libraries/globals.js"></script>
+    <script src="../static/index.js"></script>
+
+
+    <style>
+        .irs {
+            width: 100%;
+        }
+
+        .irs--flat .irs-from,
+        .irs--flat .irs-to,
+        .irs--flat .irs-single {
+            color: white;
+            font-size: 10px;
+            line-height: 1.333;
+            text-shadow: none;
+            padding: 1px 5px;
+            background-color: #9b43a9;
+            /* background-color: #ed5565; */
+            border-radius: 4px;
+        }
+
+        .irs--flat .irs-bar {
+            top: 25px;
+            height: 12px;
+            background-color: #9b43a9;
+            /* background-color: #ed5565; */
+        }
+
+        .bar text {
+            fill: white
+        }
+    </style>
+</head>
+
+<body class="dark-edition">
+    <div>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" href="javascript:void(0)">Gun Violence: Where Do We Stand?</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)">
+                                <i class="material-icons">CSE 564 Visualisation Spring 2021</i>
+                                <p class="d-lg-none d-md-block">
+                                    CSE 564 Visualisation Spring 2021
+                                </p>
+                            </a>
+                        </li>
+                        <!-- your navbar here -->
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12">
+                        <div class="card">
+                            <!-- <div class="card-header card-header-primary">
+                                <h5 class="card-title">Time Period</h4>
+                                <p class="card-category"><i>Choose your category</i></p>
+                            </div> -->
+                            <div class="card-body">
+                                <div class="d-flex p-2">
+                                    <div style="width: 80%; " class="d-inline-flex p-2">
+                                        <input type="text" class="range-slider monthyear">
+                                    </div>
+                                    <div style="width:20%" class="d-inline-flex p-2">
+                                        <button style="padding-left: 20px;" type="button"
+                                            class="btn btn-primary btn-lg btn-block" onclick="onRefreshButtonClick()"><i
+                                                class="fas fa-redo"></i>
+                                            Refresh Selections</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="card-body">
+                                <h4 class="card-title">Time Period</h4>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height:45%">
+                    <div class="col-lg-2 col-md-12">
+                        <div class="card" style="height:100%">
+                            <!-- <div class="card-header card-header-primary">
+                                <h4 class="card-title">Categories</h4>
+                                <p class="card-category"><i>Choose your category</i></p>
+                            </div> -->
+                            <div class="card-body">
+                                <div id="buttonsDiv" class="btn-group btn-group-toggle btn-group-vertical"
+                                    data-toggle="buttons" style="height:100%">
+                                    <label id=incidentsButton isSelected=true
+                                        class="btn btn-secondary active justify-content-center"
+                                        onclick="onTopButtonClick('incidentsButton')">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked><i
+                                            class="fas fa-exclamation-circle"></i></i> Total Incidents<br>
+                                        <h4>
+                                            <div class="total-incidents-counter"></div>
+                                        </h4>
+
+                                    </label>
+                                    <label id=livesButton isSelected=false class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option2" autocomplete="off"
+                                            onclick="onTopButtonClick('livesButton')"><i class="fas fa-heartbeat"></i>
+                                        Lives
+                                        Lost<br>
+                                        <h4>
+                                            <div class="lives-lost-counter"></div>
+                                        </h4>
+                                    </label>
+                                    <label id="injuredButton" isSelected=false class="btn btn-secondary"
+                                        onclick="onTopButtonClick('injuredButton')">
+                                        <input type="radio" name="options" id="option3" autocomplete="off"><i
+                                            class="fas fa-procedures"></i> People
+                                        Injured<br>
+
+                                        <h4>
+                                            <div class="people-injured-counter"></div>
+                                        </h4>
+                                    </label>
+                                    <label id="gunCountButton" isSelected=false class="btn btn-secondary"
+                                        onclick="onTopButtonClick('gunCountButton')">
+                                        <input type="radio" name="options" id="option3" autocomplete="off"><i
+                                            class="fas fa-bomb"></i> Weapons Count <br>
+
+                                        <h4>
+                                            <div class="guns-involved-counter"></div>
+                                        </h4>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <!-- <div class="stats"> -->
+                                <h4 style="color: honeydew" class="card-title">Categories</h4>
+                                <i style="color: grey">Choose your category</i>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="row">
+                        <div class="col-lg-2 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Categories</h4>
+                                    <p class="card-category"><i>Choose your category</i></p>
+                                </div>
+                                <div class="card-body">
+                                    <div id="buttonsDiv" class="btn-group btn-group-toggle btn-group-vertical"
+                                        data-toggle="buttons">
+                                        <label id=incidentsButton isSelected=true class="btn btn-secondary active"
+                                            onclick="onTopButtonClick('incidentsButton')">
+                                            <input type="radio" name="options" id="option1" autocomplete="off"
+                                                checked><i class="fas fa-exclamation-circle"></i></i> Total
+                                            Incidents<br>
+                                            <div class="total-incidents-counter"></div>
+
+                                        </label>
+                                        <label id=livesButton isSelected=false class="btn btn-secondary">
+                                            <input type="radio" name="options" id="option2" autocomplete="off"
+                                                onclick="onTopButtonClick('livesButton')"><i
+                                                class="fas fa-heartbeat"></i>
+                                            Lives
+                                            Lost<br>
+                                            <div class="lives-lost-counter"></div>
+                                        </label>
+                                        <label id="injuredButton" isSelected=false class="btn btn-secondary"
+                                            onclick="onTopButtonClick('injuredButton')">
+                                            <input type="radio" name="options" id="option3" autocomplete="off"><i
+                                                class="fas fa-procedures"></i> People
+                                            Injured<br>
+
+                                            <div class="people-injured-counter"></div>
+                                        </label>
+                                        <label id="gunCountButton" isSelected=false class="btn btn-secondary"
+                                            onclick="onTopButtonClick('gunCountButton')">
+                                            <input type="radio" name="options" id="option3" autocomplete="off"><i
+                                                class="fas fa-bomb"></i> Weapons Count <br>
+
+                                            <div class="guns-involved-counter"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <div class="card" style="height:100%">
+                            <div class="card-body" style="height:100%">
+                                <div class="d-flex p-2" style="height:100%">
+                                    <div id="test_id" style="height: 100%;width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <!-- <div class="stats"> -->
+                                <h4 style="color: honeydew" class="card-title">US Map</h4>
+                                <i style="color: grey">Choose your State</i>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <div class="card" style="height:100%">
+                            <div class="card-body" style="height:100%">
+                                <div class="d-flex p-2" style="height:100%">
+                                    <div id="div_barchart" style="height: 100%;width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <!-- <div class="stats"> -->
+                                <h4 style="color: honeydew" class="card-title">Top 10 Cities</h4>
+                                <i style="color: grey">Choose your City</i>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height: 3%"></div>
+                <div class="row" style="height: 35%">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card" style="height:100%">
+                            <!-- <div class="card-header card-header-primary">
+                                <h4 class="card-title">Categories</h4>
+                                <p class="card-category"><i>Choose your category</i></p>
+                            </div> -->
+                            <div class="card-body">
+                                <div class="d-flex p-2" style="height:100%">
+                                    <div id="div_lawschart" style="height: 100%;width: 100%;">
+                                        <!-- A simple placeholder. -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <!-- <div class="stats"> -->
+                                <h4 style="color: honeydew" class="card-title">Laws vs Incidents</h4>
+                                <i style="color: grey">Did the laws help?</i>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="row">
+                        <div class="col-lg-2 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Categories</h4>
+                                    <p class="card-category"><i>Choose your category</i></p>
+                                </div>
+                                <div class="card-body">
+                                    <div id="buttonsDiv" class="btn-group btn-group-toggle btn-group-vertical"
+                                        data-toggle="buttons">
+                                        <label id=incidentsButton isSelected=true class="btn btn-secondary active"
+                                            onclick="onTopButtonClick('incidentsButton')">
+                                            <input type="radio" name="options" id="option1" autocomplete="off"
+                                                checked><i class="fas fa-exclamation-circle"></i></i> Total
+                                            Incidents<br>
+                                            <div class="total-incidents-counter"></div>
+
+                                        </label>
+                                        <label id=livesButton isSelected=false class="btn btn-secondary">
+                                            <input type="radio" name="options" id="option2" autocomplete="off"
+                                                onclick="onTopButtonClick('livesButton')"><i
+                                                class="fas fa-heartbeat"></i>
+                                            Lives
+                                            Lost<br>
+                                            <div class="lives-lost-counter"></div>
+                                        </label>
+                                        <label id="injuredButton" isSelected=false class="btn btn-secondary"
+                                            onclick="onTopButtonClick('injuredButton')">
+                                            <input type="radio" name="options" id="option3" autocomplete="off"><i
+                                                class="fas fa-procedures"></i> People
+                                            Injured<br>
+
+                                            <div class="people-injured-counter"></div>
+                                        </label>
+                                        <label id="gunCountButton" isSelected=false class="btn btn-secondary"
+                                            onclick="onTopButtonClick('gunCountButton')">
+                                            <input type="radio" name="options" id="option3" autocomplete="off"><i
+                                                class="fas fa-bomb"></i> Weapons Count <br>
+
+                                            <div class="guns-involved-counter"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card" style="height:100%">
+                            <div class="card-body" style="height:100%">
+                                <div class="d-flex p-2" style="height:100%">
+                                    <div id="div_radarchart" style="height: 100%;width: 100%;">
+                                        <!-- A simple placeholder. -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <!-- <div class="stats"> -->
+                                <h4 style="color: honeydew" class="card-title">Violence Characteristics</h4>
+                                <i style="color: grey">What is the main reason?</i>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card" style="height:100%">
+                            <div class="card-body" style="height:100%">
+                                <div class="d-flex p-2" style="height:100%">
+                                    <div id="div_wordcloud" style="height: 100%;width: 100%;">
+                                        <!-- A simple placeholder. -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <!-- <div class="stats"> -->
+                                <h4 style="color: honeydew" class="card-title">Gun Types</h4>
+                                <i style="color: grey">Would you buy?</i>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <h4>output:</h4>
+    <p class="output"><span class="output-from"></span> — <span class="output-to"></span></p> -->
+
+                <!-- <script src="../static/index.js"></script> -->
+                <script src="../static/index.js"></script>
+
+                <script src="../static/topButtons.js"></script>
+                <script src="../static/rangeSlider.js"></script>
+
+                <script src="../static/datamap_d3.js"></script>
+
+                <script src="../static/barChart.js"></script>
+                <script src="../static/barWithLine.js"></script>
+                <script src="../static/radarChart.js"></script>
+                <script src="../static/wordcloud.js"></script>
+</body>
+
+
+</html>

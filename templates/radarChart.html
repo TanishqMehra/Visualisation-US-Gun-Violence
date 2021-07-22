@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>Smoothed Radar Chart</title>
+
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+	<!-- D3.js -->
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+	<!-- <script src="https://d3js.org/d3-path.v1.min.js" charset="utf-8"></script> -->
+
+	<style>
+		body {
+			font-family: 'Open Sans', sans-serif;
+			font-size: 11px;
+			font-weight: 300;
+
+			height: 100%;
+			fill: #242424;
+			text-align: center;
+			text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+			cursor: default;
+		}
+
+		html,
+		body {
+			height: 100%;
+			width: 100%
+		}
+
+		.legend {
+			font-family: 'Raleway', sans-serif;
+			fill: #333333;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="div_radarchart" style="height: 100%; width:100%"></div>
+	<script>
+			//////////////////////////////////////////////////////////////
+			//////////////////////// Set-Up //////////////////////////////
+			//////////////////////////////////////////////////////////////
+
+			// debugger;
+			// var render_div = document.getElementsByClassName('radarChart2')[0],
+			// div_height = render_div.offsetHeight,
+			// div_width = render_div.offsetWidth
+
+			// var margin = { top: 0.05*div_height, right: 0.15*div_width, bottom: 0.05*div_height, left: 0.15*div_width };
+
+			//////////////////////////////////////////////////////////////
+			////////////////////////// Data //////////////////////////////
+			//////////////////////////////////////////////////////////////
+
+			// var data = [
+			// 	{ name: 'Minors Involved',
+			// 		axes: [
+			// 			{axis: 'Gang Involvement', value: 42},
+			// 			{axis: 'Homicide', value: 20},
+			// 			{axis: 'Mass Shooting', value: 60},
+			// 			{axis: 'Suicide', value: 26},
+            //             {axis: 'Drug Involvement', value: 40},
+			// 			{axis: 'Bar/club incident', value: 40},
+			// 			{axis: 'House Party', value: 12}
+			// 		]
+			// 	},
+			// 	{ name: 'Adults Only',
+			// 		axes: [
+			// 			{axis: 'Gang Involvement', value: 50},
+			// 			{axis: 'Homicide', value: 45},
+			// 			{axis: 'Mass Shotting', value: 20},
+			// 			{axis: 'Suicide', value: 20},
+            //             {axis: 'Drug Involvement', value: 40},
+			// 			{axis: 'Bar/club incident', value: 30},
+			// 			{axis: 'House Party', value: 45}
+			// 		]
+			// 	}
+			// ];
+
+			//////////////////////////////////////////////////////////////
+			///// Second example /////////////////////////////////////////
+			///// Chart legend, custom color, custom unit, etc. //////////
+			//////////////////////////////////////////////////////////////
+
+
+			// console.log(div_height)
+			// console.log(div_width)
+			// var radarChartOptions2 = {
+			//   w: 0.70 * div_height,
+			//   h: 0.9 * div_width,
+
+			//   margin: margin,
+			//   maxValue: 60,
+			//   levels: 4,
+			//   roundStrokes: false,
+			//   color: d3.scaleOrdinal().range(["#AFC52F", "#ff6600"]),
+			// 	format: '.0f',
+			// 	legend: { title: 'Age Groups', translateX: 100, translateY: 40 },
+			// 	// unit: '$'
+			// };
+
+			// Draw the chart, get a reference the created svg element :
+			// let svg_radar2 = RadarChart(".radarChart2", data, radarChartOptions2);
+	</script>
+	<script src="../static/radarChart.js" charset="utf-8"></script>
+</body>
+
+</html>

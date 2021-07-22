@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Test Buttons</title>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="..\fontawesome-free-5.15.3-web\css\all.min.css">
+    <link rel="stylesheet" href="..\static\css\topButtons.css">
+    <!-- <link rel="stylesheet" href="..\static\css\materialtheme.css"> -->
+    
+
+</head>
+
+<body>
+
+    <div id="buttonsDiv" class="btn-group btn-group-toggle btn-group-vertical" data-toggle="buttons">
+        <label id=incidentsButton isSelected=true class="btn btn-secondary active" onclick="onTopButtonClick('incidentsButton')">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked><i
+                class="fas fa-exclamation-circle"></i></i> Total Incidents<br>
+                <div class="total-incidents-counter"></div>
+
+        </label>
+        <label id=livesButton isSelected=false class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off" onclick="onTopButtonClick('livesButton')"><i class="fas fa-heartbeat"></i> Lives
+            Lost<br>
+            <div class="lives-lost-counter"></div>
+        </label>
+        <label id="injuredButton" isSelected=false class="btn btn-secondary" onclick="onTopButtonClick('injuredButton')">
+            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fas fa-procedures"></i> People
+            Injured<br>
+
+            <div class="people-injured-counter"></div>
+        </label>
+        <label id="gunCountButton" isSelected=false class="btn btn-secondary" onclick="onTopButtonClick('gunCountButton')">
+            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fas fa-bomb"></i> Weapons Count <br>
+            
+            <div class="guns-involved-counter"></div>
+        </label>
+    </div>
+    <script src="../static/index.js"></script>
+    <script src="../static/topButtons.js"></script>
+</body>
+
+</html>

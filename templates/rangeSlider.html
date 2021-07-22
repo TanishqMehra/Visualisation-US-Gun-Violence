@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>
+        Range Slider
+    </title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="..\fontawesome-free-5.15.3-web\css\all.min.css">
+    
+    <link rel="stylesheet" href="..\static\css\materialtheme.css">
+
+
+    <!-- Range Slider Requirements -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+    <!-- Moment JS -->
+    <script src="../static/libraries/moment.min.js"></script>
+
+
+    <!-- Globals // For month year list and mapping -->
+    <script src="../static/libraries/globals.js"></script>
+
+
+    <style>
+        body {
+            padding: 10vmin;
+            background-color: #232931;
+            color: #eee;
+        }
+
+
+        /* input[type="number"] {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+            padding: .5em;
+            border: 1px solid #666;
+            border-radius: .3em;
+            outline: none;
+            font-size: 1em;
+        } */
+
+        .irs {
+            /* max-width: 500px; */
+            width: 100%;
+
+            /* margin-bottom: 3em; */
+        }
+
+        /* .lead {
+            font-weight: 600;
+            color: #777;
+            margin-bottom: 3em;
+        } */
+
+        /* .output {
+            font-family: monospace;
+            font-size: 1.35em;
+        } */
+    </style>
+</head>
+
+<body>
+
+    
+    <div class="d-flex p-2 align-content-center"> Time Period
+        <div style="width: 80%;" class="d-inline-flex p-2">
+            <input type="text" class="range-slider monthyear">
+        </div>
+        <div style="width:20%" class="d-inline-flex p-2">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="onRefreshButtonClick()"><i class="fas fa-redo"></i>
+                Refresh All Selections</button>
+        </div>
+    </div>
+
+    <!-- <h4>output:</h4>
+    <p class="output"><span class="output-from"></span> — <span class="output-to"></span></p> -->
+
+    <script src="../static/index.js"></script>
+    <script src="../static/rangeSlider.js"></script>
+</body>
+
+
+</html>
