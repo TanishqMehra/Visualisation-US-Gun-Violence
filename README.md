@@ -4,6 +4,7 @@ My project at Stony Brook University for the course CSE 564: Visualization under
 Check the youtube link for an overview: https://www.youtube.com/watch?v=DROVFLHg2Ps&list=PLyCRt3MN8s8OJp-M5UdCQv-NDllAqJOb5&index=10 
 
 Data Used: https://www.kaggle.com/jameslko/gun-violence-data
+
 Extensive pre-processing was performed before loading the data on the screen.
 
 Development Stack:-
