@@ -1,0 +1,14 @@
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 4px;
+        }
+
+        .axisSteelBlue text {
+            fill: steelblue;
+        }
+
+        .axisRed text {
+            fill: red;
+        }
